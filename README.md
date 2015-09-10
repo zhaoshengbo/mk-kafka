@@ -41,7 +41,7 @@
  < /aop:aspectj-autoproxy>
  < bean id ="produceAsepct" class="com.mk.kafka.client.aspect.MkProducerAnnotationAspect"/>
 ```
- 8. 消费类实现，创建新类，确保这个能被spring扫描到，并在类上加上注解@MkMessageService，并在消费方法配置注解@MkTopicConsumer.
+ 5. 消费类实现，创建新类，确保这个能被spring扫描到，并在类上加上注解@MkMessageService，并在消费方法配置注解@MkTopicConsumer.
 
 	    @MkMessageService
 	    public class TestConsumer {
@@ -74,7 +74,7 @@
     	}
  
 
- 9. 生产者相关配置，创建新类并创建相关生产方法，在方法加上注解@MkTopicProducer并配置注解相关参数.
+ 6. 生产者相关配置，创建新类并创建相关生产方法，在方法加上注解@MkTopicProducer并配置注解相关参数.
 
     	
 	    	@MkTopicProducer(topic = "entityTopic", serializerClass = "com.mk.kafka.client.serializer.SerializerEncoder")
