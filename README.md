@@ -90,6 +90,8 @@
 
 ----------
 ###注解参数说明  
+
+
 @MkTopicConsumer
 | 参数名称                   | 相关说明                 |
 |----------------------------|--------------------------|
@@ -99,6 +101,7 @@
 | failedRetryTimes           | 消费失败了重试次数       |
 | partitonConsumeThreadCount | 分区消费线程数量         |
 | serializerClass            | 序列化类                 |
+
 
 @MkTopicProducer
 | 参数名称          | 相关说明              |
