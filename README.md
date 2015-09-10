@@ -113,6 +113,14 @@
 | partitionerClass  | 根据key进行分区方法类 |
 
 
+| 参数名称          | 相关说明              |
+|-------------------|-----------------------|
+| topictopic        | 消费主题的名字        |
+| partitions        | 分区数量              |
+| replicationFactor | 分区备份数量          |
+| serializerClass   | 数据序列化方法类      |
+| partitionerClass  | 根据key进行分区方法类 |
+
 #License
 ----------
 Copyright (C) 2014-2015 WWW.IMIKE.COM
