@@ -30,14 +30,17 @@
 	spring工程声明MkKafkaContext bean
 	   <bean class="com.mk.kafka.client.MkKafkaContext"/>
 
- 7. 配置切面
-	 spring boot :
-		 `@EnableAspectJAutoProxy(proxyTargetClass = true)`
+ 7. 配置切面spring boot:
+	 ```
+ @EnableAspectJAutoProxy(proxyTargetClass = true)
+```
   spring工程
-		  ` < aop:aspectj-autoproxy proxy-target-class="true">
-	    		< aop:include name="produceAsepct" />
-		    < /aop:aspectj-autoproxy>
-			< bean id ="produceAsepct" class="com.mk.kafka.client.aspect.MkProducerAnnotationAspect"/>`
+```
+ < aop:aspectj-autoproxy proxy-target-class="true">
+ < aop:include name="produceAsepct" />
+ < /aop:aspectj-autoproxy>
+ < bean id ="produceAsepct" class="com.mk.kafka.client.aspect.MkProducerAnnotationAspect"/>
+```
  8. 消费类实现，创建新类，确保这个能被spring扫描到，并在类上加上注解@MkMessageService，并在消费方法配置注解@MkTopicConsumer.
 
 	    @MkMessageService
