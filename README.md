@@ -1,7 +1,6 @@
 ![JDBC](http://kafka.apache.org/images/kafka_logo.png)
-![JDBC](http://www.imike.com/css/style/images/img/logo_w.png)
 
-# 眯客kafka客户端封装
+# kafka客户端封装
 ----------
 ## 相关注解 ##
 
@@ -115,8 +114,3 @@
 | replicationFactor | 分区备份数量          |
 |  serializerClass  | 序列化类              |
 |  partitionerClass | 根据key进行分区方法类 |
-
-#License
-----------
-Copyright (C) 2014-2015 WWW.IMIKE.COM
-
