@@ -1,8 +1,1 @@
 language: java
-
-jdk:
-  - openjdk6
-
-env:
-  global:
-    - MAVEN_OPTS="-Xmx256M"
