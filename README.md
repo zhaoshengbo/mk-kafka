@@ -1,4 +1,4 @@
-![JDBC](http://kafka.apache.org/images/kafka_logo.png)
+![JDBC](http://kafka.apache.org/images/kafka_logo.png)[![Build Status](https://travis-ci.org/zhaoshengbo/mk-kafka.svg?branch=master)](https://travis-ci.org/zhaoshengbo/mk-kafka)
 
 # kafka客户端封装
 ----------
