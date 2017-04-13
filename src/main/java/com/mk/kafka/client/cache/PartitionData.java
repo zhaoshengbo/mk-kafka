@@ -26,7 +26,7 @@ public class PartitionData {
 		this.topic = topic;
 	}
 
-	public int getPartitionIndex() {
+	int getPartitionIndex() {
 		return this.partitionIndex;
 	}
 

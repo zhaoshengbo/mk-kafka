@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mk.kafka.client.cache.MethodParameterCodcCache;
+import com.mk.kafka.client.cache.MethodParameterCodecCache;
 
 import kafka.serializer.Decoder;
 
@@ -30,7 +30,7 @@ public class PartitionConsumeTask implements Runnable {
 
 	private byte[] message = null;
 
-	public PartitionConsumeTask(Object object, Method method, byte[] message, String topic) {
+	PartitionConsumeTask(Object object, Method method, byte[] message, String topic) {
 		this.topic = topic;
 		this.object = object;
 		this.method = method;
@@ -39,15 +39,12 @@ public class PartitionConsumeTask implements Runnable {
 
 	public void run() {
 		try {
-			Decoder<?> decoder = MethodParameterCodcCache.getDecoder(this.getMethod());
+			Decoder<?> decoder = MethodParameterCodecCache.getDecoder(this.getMethod());
+			assert decoder != null;
 			Object arg = decoder.fromBytes(this.getMessage());
 			PartitionConsumeTask.logger.info("topic:{} consume data:{}", this.getTopic(), arg.toString());
 			this.getMethod().invoke(this.getObject(), arg);
-		} catch (IllegalAccessException e) {
-			PartitionConsumeTask.logger.error(this.getCallMethodFailedMsg(), e);
-		} catch (IllegalArgumentException e) {
-			PartitionConsumeTask.logger.error(this.getCallMethodFailedMsg(), e);
-		} catch (InvocationTargetException e) {
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			PartitionConsumeTask.logger.error(this.getCallMethodFailedMsg(), e);
 		}
 	}

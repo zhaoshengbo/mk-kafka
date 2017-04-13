@@ -35,12 +35,12 @@ public class PartitionDataCache {
 	}
 
 	private static void shutDown(PartitionData partitionData) {
-		PartitionDataCache.logger.info("shuting down topic[{}] partition[{}]", partitionData.getTopic(), partitionData.getPartitionIndex());
+		PartitionDataCache.logger.info("shutting down topic[{}] partition[{}]", partitionData.getTopic(), partitionData.getPartitionIndex());
 		ExecutorService consumeService = partitionData.getConsumeService();
 		consumeService.shutdown();
 		try {
-			boolean shutDownSuccessed = consumeService.awaitTermination(5, TimeUnit.SECONDS);
-			if (shutDownSuccessed) {
+			boolean shutDownSuccess = consumeService.awaitTermination(5, TimeUnit.SECONDS);
+			if (shutDownSuccess) {
 				PartitionDataCache.logger.info("shut down topic[{}] partition[{}] completed", partitionData.getTopic(), partitionData.getPartitionIndex());
 			} else {
 				PartitionDataCache.logger.error("shut down topic[{}] partition[{}] timeout", partitionData.getTopic(), partitionData.getPartitionIndex());

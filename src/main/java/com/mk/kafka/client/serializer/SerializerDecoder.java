@@ -21,22 +21,14 @@ public class SerializerDecoder implements Decoder<Serializable> {
 		try {
 			in = new ObjectInputStream(bis);
 			return (Serializable) in.readObject();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (ClassNotFoundException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		} finally {
-			try {
-				bis.close();
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
 			try {
 				if (in != null) {
 					in.close();
 				}
 			} catch (IOException e) {
-				throw new RuntimeException(e);
 			}
 		}
 	}

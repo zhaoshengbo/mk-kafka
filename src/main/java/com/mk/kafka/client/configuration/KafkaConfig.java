@@ -94,10 +94,6 @@ public class KafkaConfig {
 		return this.zkConnect;
 	}
 
-	public void setZkConnect(String zkConnect) {
-		this.zkConnect = zkConnect;
-	}
-
 	public String getZkConnectionTimeoutMS() {
 		return this.zkConnectionTimeoutMS;
 	}
@@ -106,116 +102,56 @@ public class KafkaConfig {
 		return this.zkSessionTimeoutMS;
 	}
 
-	public String getAutoOffsetRest() {
+	private String getAutoOffsetRest() {
 		return this.autoOffsetRest;
 	}
 
-	public void setAutoOffsetRest(String autoOffsetRest) {
-		this.autoOffsetRest = autoOffsetRest;
-	}
-
-	public String getSocketReceiveBufferBytes() {
+	private String getSocketReceiveBufferBytes() {
 		return this.socketReceiveBufferBytes;
 	}
 
-	public void setSocketReceiveBufferBytes(String socketReceiveBufferBytes) {
-		this.socketReceiveBufferBytes = socketReceiveBufferBytes;
-	}
-
-	public String getFethcMessageMaxBytes() {
+	private String getFetchMessageMaxBytes() {
 		return this.fethcMessageMaxBytes;
 	}
 
-	public void setFethcMessageMaxBytes(String fethcMessageMaxBytes) {
-		this.fethcMessageMaxBytes = fethcMessageMaxBytes;
-	}
-
-	public String getAutoCommitIntervalMS() {
+	private String getAutoCommitIntervalMS() {
 		return this.autoCommitIntervalMS;
 	}
 
-	public void setAutoCommitIntervalMS(String autoCommitIntervalMS) {
-		this.autoCommitIntervalMS = autoCommitIntervalMS;
-	}
-
-	public String getQueueBufferingMaxMS() {
+	private String getQueueBufferingMaxMS() {
 		return this.queueBufferingMaxMS;
 	}
 
-	public void setQueueBufferingMaxMS(String queueBufferingMaxMS) {
-		this.queueBufferingMaxMS = queueBufferingMaxMS;
-	}
-
-	public String getTopicMetadataRefreshIntervalMS() {
+	private String getTopicMetadataRefreshIntervalMS() {
 		return this.topicMetadataRefreshIntervalMS;
 	}
 
-	public void setTopicMetadataRefreshIntervalMS(String topicMetadataRefreshIntervalMS) {
-		this.topicMetadataRefreshIntervalMS = topicMetadataRefreshIntervalMS;
-	}
-
-	public String getQueueBufferingMaxMessages() {
+	private String getQueueBufferingMaxMessages() {
 		return this.queueBufferingMaxMessages;
 	}
 
-	public void setQueueBufferingMaxMessages(String queueBufferingMaxMessages) {
-		this.queueBufferingMaxMessages = queueBufferingMaxMessages;
-	}
-
-	public String getRetryBackOffMS() {
+	private String getRetryBackOffMS() {
 		return this.retryBackOffMS;
 	}
 
-	public void setRetryBackOffMS(String retryBackOffMS) {
-		this.retryBackOffMS = retryBackOffMS;
-	}
-
-	public String getMessageSendMaxRetries() {
+	private String getMessageSendMaxRetries() {
 		return this.messageSendMaxRetries;
 	}
 
-	public void setMessageSendMaxRetries(String messageSendMaxRetries) {
-		this.messageSendMaxRetries = messageSendMaxRetries;
-	}
-
-	public String getSendBufferBytes() {
+	private String getSendBufferBytes() {
 		return this.sendBufferBytes;
 	}
 
-	public void setSendBufferBytes(String sendBufferBytes) {
-		this.sendBufferBytes = sendBufferBytes;
-	}
-
-	public String getSocketRequestMaxBytes() {
+	private String getSocketRequestMaxBytes() {
 		return this.socketRequestMaxBytes;
 	}
 
-	public void setSocketRequestMaxBytes(String socketRequestMaxBytes) {
-		this.socketRequestMaxBytes = socketRequestMaxBytes;
-	}
-
-	public String getSocketSendBufferBytes() {
+	private String getSocketSendBufferBytes() {
 		return this.socketSendBufferBytes;
 	}
 
-	public void setSocketSendBufferBytes(String socketSendBufferBytes) {
-		this.socketSendBufferBytes = socketSendBufferBytes;
-	}
-
-	public String getRequestRequiredAcks() {
+	private String getRequestRequiredAcks() {
 		return this.requestRequiredAcks;
-	}
-
-	public void setRequestRequiredAcks(String requestRequiredAcks) {
-		this.requestRequiredAcks = requestRequiredAcks;
-	}
-
-	public void setProduceProperties(Properties produceProperties) {
-		this.produceProperties = produceProperties;
-	}
-
-	public void setConsumerProperties(Properties consumerProperties) {
-		this.consumerProperties = consumerProperties;
 	}
 
 	public Properties getProduceProperties() {
@@ -249,7 +185,7 @@ public class KafkaConfig {
 		props.put("zookeeper.connect.timeout.ms", this.getZkConnectionTimeoutMS());
 		props.put("auto.offset.reset", this.getAutoOffsetRest());
 		props.put("socket.receive.buffer.bytes", this.getSocketReceiveBufferBytes());
-		props.put("fetch.message.max.bytes", this.getFethcMessageMaxBytes());
+		props.put("fetch.message.max.bytes", this.getFetchMessageMaxBytes());
 		props.put("auto.commit.interval.ms", this.getAutoCommitIntervalMS());
 
 		this.consumerProperties = props;

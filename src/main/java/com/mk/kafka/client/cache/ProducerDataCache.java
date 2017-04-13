@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ProducerDataCache {
 
-	private static Map<String, ProducerData> topicProducerMap = new ConcurrentHashMap<String, ProducerData>();
+	private static Map<String, ProducerData> topicProducerMap = new ConcurrentHashMap<>();
 
 	public static void put(String topic, ProducerData producerData) {
 		ProducerDataCache.topicProducerMap.put(topic, producerData);
@@ -26,9 +26,8 @@ public class ProducerDataCache {
 	}
 
 	public static void shutdown() {
-		Iterator<ProducerData> producerIterator = ProducerDataCache.topicProducerMap.values().iterator();
-		while (producerIterator.hasNext()) {
-			producerIterator.next().getProducer().close();
+		for (ProducerData producerData : ProducerDataCache.topicProducerMap.values()) {
+			producerData.getProducer().close();
 		}
 		ProducerDataCache.topicProducerMap = null;
 	}

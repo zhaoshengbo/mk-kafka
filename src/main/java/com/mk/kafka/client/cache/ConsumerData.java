@@ -11,44 +11,44 @@ import kafka.javaapi.consumer.ConsumerConnector;
  */
 public class ConsumerData {
 
-	private String topic = null;
+    private String topic = null;
 
-	private int partitionConsumeThreadCount = 1;
+    private int partitionConsumeThreadCount = 1;
 
-	private ConsumerConnector consumerConnector = null;
+    private ConsumerConnector consumerConnector = null;
 
-	private ExecutorService executorService = null;
+    private ExecutorService executorService = null;
 
-	public String getTopic() {
-		return this.topic;
-	}
+    public String getTopic() {
+        return this.topic;
+    }
 
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 
-	public int getPartitionConsumeThreadCount() {
-		return this.partitionConsumeThreadCount;
-	}
+    public int getPartitionConsumeThreadCount() {
+        return this.partitionConsumeThreadCount;
+    }
 
-	public void setPartitionConsumeThreadCount(int partitionConsumeThreadCount) {
-		this.partitionConsumeThreadCount = partitionConsumeThreadCount;
-	}
+    public void setPartitionConsumeThreadCount(int partitionConsumeThreadCount) {
+        this.partitionConsumeThreadCount = partitionConsumeThreadCount;
+    }
 
-	public ConsumerConnector getConsumerConnector() {
-		return this.consumerConnector;
-	}
+    ConsumerConnector getConsumerConnector() {
+        return this.consumerConnector;
+    }
 
-	public void setConsumerConnector(ConsumerConnector consumerConnector) {
-		this.consumerConnector = consumerConnector;
-	}
+    public void setConsumerConnector(ConsumerConnector consumerConnector) {
+        this.consumerConnector = consumerConnector;
+    }
 
-	public ExecutorService getExecutorService() {
-		return this.executorService;
-	}
+    ExecutorService getExecutorService() {
+        return this.executorService;
+    }
 
-	public void setExecutorService(ExecutorService executorService) {
-		this.executorService = executorService;
-	}
+    public void setExecutorService(ExecutorService executorService) {
+        this.executorService = executorService;
+    }
 
 }

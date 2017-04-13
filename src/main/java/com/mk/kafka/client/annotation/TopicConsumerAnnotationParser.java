@@ -13,7 +13,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.mk.kafka.client.cache.ConsumerData;
 import com.mk.kafka.client.cache.ConsumerDataCache;
-import com.mk.kafka.client.cache.MethodParameterCodcCache;
+import com.mk.kafka.client.cache.MethodParameterCodecCache;
 import com.mk.kafka.client.cache.PartitionData;
 import com.mk.kafka.client.cache.PartitionDataCache;
 import com.mk.kafka.client.configuration.KafkaConfig;
@@ -57,12 +57,12 @@ public class TopicConsumerAnnotationParser implements IMethodAnnotationParser {
 		this.startConsumeData(bean, method, consumerAnnotation, consumerProperties);
 	}
 
-	protected void startConsumeData(Object bean, Method method, MkTopicConsumer consumerAnnotation, Properties consumerProperties) {
+	private void startConsumeData(Object bean, Method method, MkTopicConsumer consumerAnnotation, Properties consumerProperties) {
 		ConsumerConfig consumerConfig = new ConsumerConfig(consumerProperties);
 		ConsumerConnector consumerConnector = Consumer.createJavaConsumerConnector(consumerConfig);
 
-		Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
-		topicCountMap.put(consumerAnnotation.topic(), new Integer(consumerAnnotation.partitions()));
+		Map<String, Integer> topicCountMap = new HashMap<>();
+		topicCountMap.put(consumerAnnotation.topic(), consumerAnnotation.partitions());
 		Map<String, List<KafkaStream<byte[], byte[]>>> topicStreamMap = consumerConnector.createMessageStreams(topicCountMap);
 
 		ConsumerData consumerData = new ConsumerData();
@@ -75,7 +75,7 @@ public class TopicConsumerAnnotationParser implements IMethodAnnotationParser {
 		ConsumerDataCache.putConsumerData(consumerData);
 	}
 
-	protected void submitConsumerTask(Object bean, Method method, Map<String, List<KafkaStream<byte[], byte[]>>> topicStreamMap, ConsumerData consumerData) {
+	private void submitConsumerTask(Object bean, Method method, Map<String, List<KafkaStream<byte[], byte[]>>> topicStreamMap, ConsumerData consumerData) {
 		List<KafkaStream<byte[], byte[]>> streamList = topicStreamMap.values().iterator().next();
 		ExecutorService executorService = Executors.newFixedThreadPool(streamList.size());
 		int partitionIndex = 0;
@@ -101,13 +101,13 @@ public class TopicConsumerAnnotationParser implements IMethodAnnotationParser {
 		return partitionData;
 	}
 
-	protected Properties getConsumerProperties(KafkaConfig config) {
+	private Properties getConsumerProperties(KafkaConfig config) {
 		return (Properties) config.getConsumerProperties().clone();
 	}
 
 	private void putDecoder(Method method, MkTopicConsumer consumerAnnotation) {
 		Decoder<?> decoder = this.getDecoderInstance(consumerAnnotation);
-		MethodParameterCodcCache.putDecoder(method, decoder);
+		MethodParameterCodecCache.putDecoder(method, decoder);
 	}
 
 	private Decoder<?> getDecoderInstance(MkTopicConsumer consumerAnnotation) {

@@ -17,7 +17,7 @@ public class ConsumerDataCache {
 
 	private static final Logger logger = LoggerFactory.getLogger(ConsumerDataCache.class);
 
-	private static List<ConsumerData> consumerDataList = new ArrayList<ConsumerData>();
+	private static List<ConsumerData> consumerDataList = new ArrayList<>();
 
 	public static void putConsumerData(ConsumerData consumerData) {
 		ConsumerDataCache.consumerDataList.add(consumerData);
@@ -30,7 +30,7 @@ public class ConsumerDataCache {
 	}
 
 	private static void shutDownConsumer(ConsumerData consumerData) {
-		ConsumerDataCache.logger.info("shuting down topic:{} consumer.", consumerData.getTopic());
+		ConsumerDataCache.logger.info("shutting down topic:{} consumer.", consumerData.getTopic());
 		consumerData.getConsumerConnector().shutdown();
 		ExecutorService executorService = consumerData.getExecutorService();
 		executorService.shutdown();

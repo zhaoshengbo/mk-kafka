@@ -38,9 +38,7 @@ public class TopicConsumeTask implements Runnable {
 	}
 
 	public void run() {
-		ConsumerIterator<byte[], byte[]> streamIterator = this.getStream().iterator();
-		while (streamIterator.hasNext()) {
-			MessageAndMetadata<byte[], byte[]> messageAndMetadata = streamIterator.next();
+		for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : this.getStream()) {
 			byte[] message = messageAndMetadata.message();
 			this.callMethod(message);
 		}

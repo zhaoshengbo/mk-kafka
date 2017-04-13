@@ -62,17 +62,13 @@ public class MkKafkaContext implements DisposableBean, ApplicationContextAware {
 		this.applicationContext = applicationContext;
 	}
 
-	public void setMethodAnnotationParserList(List<IMethodAnnotationParser> methodAnnotationParserList) {
-		this.methodAnnotationParserList = methodAnnotationParserList;
-	}
-
-	protected void initContext() {
+	private void initContext() {
 		if (this.getMethodAnnotationParserList() == null) {
 			this.registerDefaultMethodAnnotationParser();
 		}
 	}
 
-	protected void initZkClient() {
+	private void initZkClient() {
 		KafkaConfig kafkaConfig = this.getKafkaConfig();
 		String zkServers = kafkaConfig.getZkConnect();
 		Integer zkConnectTimtoutMS = Integer.valueOf(kafkaConfig.getZkConnectionTimeoutMS());
@@ -83,24 +79,21 @@ public class MkKafkaContext implements DisposableBean, ApplicationContextAware {
 
 	/**
 	 * 注册默认的方法注解解析器.
-	 *
-	 * @see
-	 * @see
 	 */
-	protected void registerDefaultMethodAnnotationParser() {
-		this.methodAnnotationParserList = new ArrayList<IMethodAnnotationParser>();
+	private void registerDefaultMethodAnnotationParser() {
+		this.methodAnnotationParserList = new ArrayList<>();
 		this.getMethodAnnotationParserList().add(new TopicConsumerAnnotationParser());
 		this.getMethodAnnotationParserList().add(new TopicProducerAnnotationParser());
 	}
 
-	protected void doPackageScan() {
+	private void doPackageScan() {
 		Map<String, Object> beanMap = this.getApplicationContext().getBeansWithAnnotation(MkMessageService.class);
 		for (Entry<String, Object> beanMapEntry : beanMap.entrySet()) {
 			this.registerCandidate(beanMapEntry.getValue());
 		}
 	}
 
-	protected void registerCandidate(Object object) {
+	private void registerCandidate(Object object) {
 		Method[] methods = object.getClass().getMethods();
 		for (Method method : methods) {
 			Annotation[] annotations = method.getAnnotations();
@@ -110,7 +103,7 @@ public class MkKafkaContext implements DisposableBean, ApplicationContextAware {
 		}
 	}
 
-	protected void registerCandidate(Object bean, Method method, Annotation annotation) {
+	private void registerCandidate(Object bean, Method method, Annotation annotation) {
 		for (IMethodAnnotationParser parser : this.getMethodAnnotationParserList()) {
 			if (parser.isAcceptable(annotation)) {
 				parser.processObject(this.getApplicationContext(), bean, method, annotation);
